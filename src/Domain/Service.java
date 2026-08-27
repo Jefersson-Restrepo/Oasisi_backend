@@ -8,7 +8,4 @@ public class Service {
     private int time;
     private String benefit;
     private String Photo;
-
-
-
 }
