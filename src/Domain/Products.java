@@ -7,7 +7,7 @@ public class Products {
     private String name;
     private String brand;
 
-    // 2. Constructor vacío
+    // 2. Constructor vací+}}}
     public Products() {
     }
 

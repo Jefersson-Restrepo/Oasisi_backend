@@ -2,7 +2,7 @@ package Domain;
 
 public class Employees extends Person {
 
-    // 1. Atributos propios de Employees (si los hay, ej. idService)
+    // 1. Atributo propio de Employees
     private String idService;
 
     // 2. Constructor vacío
@@ -10,13 +10,13 @@ public class Employees extends Person {
         super();
     }
 
-    // 3. Constructor con parámetros
+    // 3. Constructor con parámetros (envía los 4 datos a Person)
     public Employees(int id, String name, String gender, int age, String idService) {
         super(id, name, gender, age);
         this.idService = idService;
     }
 
-    // 4. Getters y Setters propios
+    // 4. Getter y Setter del atributo propio
     public String getIdService() {
         return idService;
     }
@@ -25,7 +25,7 @@ public class Employees extends Person {
         this.idService = idService;
     }
 
-    // 5. Métodos heredados con @Override correcto
+    // 5. Métodos CRUD heredados
     @Override
     public void create() {
         super.create();
@@ -47,7 +47,7 @@ public class Employees extends Person {
     }
 
     @Override
-    public void deleteById(int id) { // Corrección: deleteById en lugar de delete
+    public void deleteById(int id) {
         super.deleteById(id);
     }
 }

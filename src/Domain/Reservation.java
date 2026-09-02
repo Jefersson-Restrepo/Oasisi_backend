@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 package Domain;
 
@@ -112,4 +113,9 @@ public class Reservation {
     public void setIdEmployee(int idEmployee) {
         this.idEmployee = idEmployee;
     }
+=======
+package Domain;
+
+public class Reservation {
+>>>>>>> 86ef6d4e0d5e2dea70548655ee527f6c2eeb1a7d
 }
