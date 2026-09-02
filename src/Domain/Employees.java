@@ -1,57 +1,31 @@
 package Domain;
 
-public class Employees extends Customers{
-    private String IdService;
+public class Employees extends Person {
 
-    @Override
-    public int getId() {
-        return super.getId();
+    // 1. Atributos propios de Employees (si los hay, ej. idService)
+    private String idService;
+
+    // 2. Constructor vacío
+    public Employees() {
+        super();
     }
 
-    @Override
-    public void setId(int id) {
-        super.setId(id);
+    // 3. Constructor con parámetros
+    public Employees(int id, String name, String gender, int age, String idService) {
+        super(id, name, gender, age);
+        this.idService = idService;
     }
 
-    @Override
-    public String getName() {
-        return super.getName();
-    }
-
-    @Override
-    public void setName(String name) {
-        super.setName(name);
-    }
-
-    @Override
-    public int getAge() {
-        return super.getAge();
-    }
-
-    @Override
-    public void setAge(int age) {
-        super.setAge(age);
-    }
-
-    @Override
-    public String getGender() {
-        return super.getGender();
-    }
-
-    @Override
-    public void setGender(String gender) {
-        super.setGender(gender);
-    }
-
+    // 4. Getters y Setters propios
     public String getIdService() {
-        return IdService;
+        return idService;
     }
 
     public void setIdService(String idService) {
-        IdService = idService;
+        this.idService = idService;
     }
-    //metodos heredados
 
+    // 5. Métodos heredados con @Override correcto
     @Override
     public void create() {
         super.create();
@@ -73,7 +47,7 @@ public class Employees extends Customers{
     }
 
     @Override
-    public void delete(int id) {
-        super.delete(id);
+    public void deleteById(int id) { // Corrección: deleteById en lugar de delete
+        super.deleteById(id);
     }
 }
