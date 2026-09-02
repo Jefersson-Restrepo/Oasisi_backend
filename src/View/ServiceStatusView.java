@@ -1,4 +1,4 @@
 package View;
 
-public class ServiceStatusView s{
+public class ServiceStatusView {
 }
