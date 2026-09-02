@@ -5,52 +5,21 @@ public class Person {
     private int id;
     private String name;
     private String gender;
-    private String photo;
     private int age;
-// GETTER AND SETTER
 
-    public int getId() {
-        return id;
+    // Constructor vacío
+    public Person() {
     }
 
-    public void setId(int id) {
+    // Constructor con 4 parámetros
+    public Person(int id, String name, String gender, int age) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
         this.age = age;
     }
 
-
-    // metodos
+    // Métodos CRUD base
     public void create() {
     }
 
@@ -63,6 +32,19 @@ public class Person {
     public void update() {
     }
 
-    public void delete(int id) {
+    public void deleteById(int id) {
     }
+
+    // Getters y Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getGender() { return gender; }
+    public void setGender(String gender) { this.gender = gender; }
+
+    public int getAge() { return age; }
+    public void setAge(int age) { this.age = age; }
 }
