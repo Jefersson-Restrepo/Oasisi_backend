@@ -54,4 +54,4 @@ public class Products {
     public void setBrand(String brand) {
         this.brand = brand;
     }
-} // La llave final...
+}
