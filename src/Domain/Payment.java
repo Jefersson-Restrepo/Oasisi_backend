@@ -1,15 +1,15 @@
 package Domain;
 
-public class PaymentPaymentMethod {
+public class Payment {
 
     private int id;
     private String efectivo;
     private String transferencia;
 
-    public PaymentPaymentMethod() {
+    public Payment() {
     }
 
-    public PaymentPaymentMethod(int id, String efectivo, String transferencia) {
+    public Payment(int id, String efectivo, String transferencia) {
         this.id = id;
         this.efectivo = efectivo;
         this.transferencia = transferencia;
