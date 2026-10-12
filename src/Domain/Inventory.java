@@ -3,82 +3,35 @@ package Domain;
 import java.util.Date;
 
 public class Inventory {
-
-    //Atributos segun el UML
     private int id;
     private int quantity;
-    private int minimunStok;
+    private int minimumStock;
     private Date lastUpdate;
     private int idProduct;
 
-    //Constructor con parametros
-    public Inventory(int id, int quantity, int minimunStok, Date lastUpdate, int idProduct) {
+    public Inventory() { }
+
+    public Inventory(int id, int quantity, int minimumStock, Date lastUpdate, int idProduct) {
         this.id = id;
         this.quantity = quantity;
-        this.minimunStok = minimunStok;
+        this.minimumStock = minimumStock;
         this.lastUpdate = lastUpdate;
         this.idProduct = idProduct;
     }
 
-    //Metodos especificados en el UML
-    public void create() {
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public int getMinimumStock() { return minimumStock; }
+    public void setMinimumStock(int minimumStock) { this.minimumStock = minimumStock; }
+    public Date getLastUpdate() { return lastUpdate; }
+    public void setLastUpdate(Date lastUpdate) { this.lastUpdate = lastUpdate; }
+    public int getIdProduct() { return idProduct; }
+    public void setIdProduct(int idProduct) { this.idProduct = idProduct; }
 
-    public void selectById(int id) {
-    }
-
-    public void selectAll() {
-    }
-
-    public void update() {
-    }
-
-    public void deleteById(int id) {
-    }
-
-    public void updateStock(){
-    }
-
-    //Getters and Setters
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getMinimunStok() {
-        return minimunStok;
-    }
-
-    public void setMinimunStok(int minimunStok) {
-        this.minimunStok = minimunStok;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public int getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
+    @Override
+    public String toString() {
+        return "Inventory{id=" + id + ", quantity=" + quantity + ", minimumStock=" + minimumStock + ", lastUpdate=" + lastUpdate + ", idProduct=" + idProduct + '}';
     }
 }

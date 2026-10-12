@@ -1,41 +1,37 @@
 package Domain;
 
+import java.util.Date;
+
 public class Payment {
-
     private int id;
-    private String efectivo;
-    private String transferencia;
+    private double amount;
+    private String paymentMethod;
+    private Date paymentDate;
+    private String status;
 
-    public Payment() {
-    }
+    public Payment() { }
 
-    public Payment(int id, String efectivo, String transferencia) {
+    public Payment(int id, double amount, String paymentMethod, Date paymentDate, String status) {
         this.id = id;
-        this.efectivo = efectivo;
-        this.transferencia = transferencia;
+        this.amount = amount;
+        this.paymentMethod = paymentMethod;
+        this.paymentDate = paymentDate;
+        this.status = status;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public double getAmount() { return amount; }
+    public void setAmount(double amount) { this.amount = amount; }
+    public String getPaymentMethod() { return paymentMethod; }
+    public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod; }
+    public Date getPaymentDate() { return paymentDate; }
+    public void setPaymentDate(Date paymentDate) { this.paymentDate = paymentDate; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getEfectivo() {
-        return efectivo;
-    }
-
-    public void setEfectivo(String efectivo) {
-        this.efectivo = efectivo;
-    }
-
-    public String getTransferencia() {
-        return transferencia;
-    }
-
-    public void setTransferencia(String transferencia) {
-        this.transferencia = transferencia;
+    @Override
+    public String toString() {
+        return "Payment{id=" + id + ", amount=" + amount + ", paymentMethod='" + paymentMethod + "', paymentDate=" + paymentDate + ", status='" + status + "'}";
     }
 }
