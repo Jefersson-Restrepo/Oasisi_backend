@@ -1,10 +1,11 @@
 package Repository;
 
 import Domain.Service;
+import Port.OutputPort;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceRepository {
+public class ServiceRepository implements OutputPort<Service> {
     private final List<Service> data = new ArrayList<>();
     public void create(Service service) { if (service != null) data.add(service); }
     public Service selectById(int id) { return data.stream().filter(service -> service.getId() == id).findFirst().orElse(null); }

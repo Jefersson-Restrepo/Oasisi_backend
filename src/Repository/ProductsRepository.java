@@ -1,10 +1,11 @@
 package Repository;
 
 import Domain.Products;
+import Port.OutputPort;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductsRepository {
+public class ProductsRepository implements OutputPort<Products> {
     private final List<Products> data = new ArrayList<>();
     public void create(Products product) { if (product != null) data.add(product); }
     public Products selectById(int id) { return data.stream().filter(product -> product.getId() == id).findFirst().orElse(null); }

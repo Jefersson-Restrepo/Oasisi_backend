@@ -1,10 +1,11 @@
 package Repository;
 
 import Domain.Customer;
+import Port.OutputPort;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomersRepository {
+public class CustomersRepository implements OutputPort<Customer> {
     private final List<Customer> data = new ArrayList<>();
     public void create(Customer customer) { if (customer != null) data.add(customer); }
     public Customer selectById(int id) { return data.stream().filter(customer -> customer.getId() == id).findFirst().orElse(null); }

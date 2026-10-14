@@ -6,6 +6,7 @@ import Domain.Person;
 import Domain.Products;
 import Domain.Reservation;
 import Domain.Service;
+import Port.InputPort;
 import Service.CustomersService;
 import Service.EmployeesService;
 import Service.InventoryService;
@@ -34,14 +35,14 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== Bienvenido a Oasis Spa ===");
 
-        PersonService personService = new PersonService();
-        CustomersService customersService = new CustomersService();
-        EmployeesService employeesService = new EmployeesService();
-        ProductsService productsService = new ProductsService();
-        InventoryService inventoryService = new InventoryService();
-        PaymetnService paymetnService = new PaymetnService();
-        ReservationService reservationService = new ReservationService();
-        ServiceService serviceService = new ServiceService();
+        InputPort<Person> personService = new PersonService();
+        InputPort<Customer> customersService = new CustomersService();
+        InputPort<Employees> employeesService = new EmployeesService();
+        InputPort<Products> productsService = new ProductsService();
+        InputPort<Inventory> inventoryService = new InventoryService();
+        InputPort<Payment> paymetnService = new PaymetnService();
+        InputPort<Reservation> reservationService = new ReservationService();
+        InputPort<Service> serviceService = new ServiceService();
 
         PersonView personView = new PersonView();
         CustomersView customersView = new CustomersView();
@@ -84,7 +85,7 @@ public class Main {
         System.out.println("0. Salir");
     }
 
-    private static void managePeople(PersonService service, PersonView view) {
+    private static void managePeople(InputPort<Person> service, PersonView view) {
         boolean back = false;
         while (!back) {
             view.showMenu();
@@ -121,7 +122,7 @@ public class Main {
         }
     }
 
-    private static void manageCustomers(CustomersService service, CustomersView view) {
+    private static void manageCustomers(InputPort<Customer> service, CustomersView view) {
         boolean back = false;
         while (!back) {
             view.showMenu();
@@ -162,7 +163,7 @@ public class Main {
         }
     }
 
-    private static void manageEmployees(EmployeesService service, EmployeesView view) {
+    private static void manageEmployees(InputPort<Employees> service, EmployeesView view) {
         boolean back = false;
         while (!back) {
             view.showMenu();
@@ -201,7 +202,7 @@ public class Main {
         }
     }
 
-    private static void manageProducts(ProductsService service, ProductsView view) {
+    private static void manageProducts(InputPort<Products> service, ProductsView view) {
         boolean back = false;
         while (!back) {
             view.showMenu();
@@ -237,7 +238,7 @@ public class Main {
         }
     }
 
-    private static void manageInventory(InventoryService service, InventoryView view) {
+    private static void manageInventory(InputPort<Inventory> service, InventoryView view) {
         boolean back = false;
         while (!back) {
             view.showMenu();
@@ -274,7 +275,7 @@ public class Main {
         }
     }
 
-    private static void managePayments(PaymetnService service, PaymetnView view) {
+    private static void managePayments(InputPort<Payment> service, PaymetnView view) {
         boolean back = false;
         while (!back) {
             view.showMenu();
@@ -312,7 +313,7 @@ public class Main {
         }
     }
 
-    private static void manageReservations(ReservationService service, ReservationView view) {
+    private static void manageReservations(InputPort<Reservation> service, ReservationView view) {
         boolean back = false;
         while (!back) {
             view.showMenu();
@@ -356,7 +357,7 @@ public class Main {
         }
     }
 
-    private static void manageServices(ServiceService service, ServiceView view) {
+    private static void manageServices(InputPort<Service> service, ServiceView view) {
         boolean back = false;
         while (!back) {
             view.showMenu();

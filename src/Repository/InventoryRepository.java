@@ -1,10 +1,11 @@
 package Repository;
 
 import Domain.Inventory;
+import Port.OutputPort;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InventoryRepository {
+public class InventoryRepository implements OutputPort<Inventory> {
     private final List<Inventory> data = new ArrayList<>();
     public void create(Inventory inventory) { if (inventory != null) data.add(inventory); }
     public Inventory selectById(int id) { return data.stream().filter(item -> item.getId() == id).findFirst().orElse(null); }

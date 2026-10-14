@@ -1,11 +1,22 @@
 package Service;
 
 import Domain.Reservation;
+import Port.InputPort;
+import Port.OutputPort;
 import Repository.ReservationRepository;
 import java.util.List;
+import java.util.Objects;
 
-public class ReservationService {
-    private final ReservationRepository repository = new ReservationRepository();
+public class ReservationService implements InputPort<Reservation> {
+    private final OutputPort<Reservation> repository;
+
+    public ReservationService() {
+        this(new ReservationRepository());
+    }
+
+    public ReservationService(OutputPort<Reservation> repository) {
+        this.repository = Objects.requireNonNull(repository, "El OutputPort no puede ser nulo.");
+    }
 
     public void create(Reservation reservation) {
         if (reservation == null) throw new IllegalArgumentException("La reserva no puede ser nula.");

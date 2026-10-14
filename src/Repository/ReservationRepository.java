@@ -1,10 +1,11 @@
 package Repository;
 
 import Domain.Reservation;
+import Port.OutputPort;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservationRepository {
+public class ReservationRepository implements OutputPort<Reservation> {
     private final List<Reservation> data = new ArrayList<>();
     public void create(Reservation reservation) { if (reservation != null) data.add(reservation); }
     public Reservation selectById(int id) { return data.stream().filter(reservation -> reservation.getId() == id).findFirst().orElse(null); }

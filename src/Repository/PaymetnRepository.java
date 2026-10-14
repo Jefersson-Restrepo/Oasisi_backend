@@ -1,10 +1,11 @@
 package Repository;
 
 import Domain.Payment;
+import Port.OutputPort;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaymetnRepository {
+public class PaymetnRepository implements OutputPort<Payment> {
     private final List<Payment> data = new ArrayList<>();
     public void create(Payment payment) { if (payment != null) data.add(payment); }
     public Payment selectById(int id) { return data.stream().filter(payment -> payment.getId() == id).findFirst().orElse(null); }

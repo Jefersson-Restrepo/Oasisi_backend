@@ -1,12 +1,23 @@
 package Service;
 
 import Domain.Inventory;
+import Port.InputPort;
+import Port.OutputPort;
 import Repository.InventoryRepository;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
-public class InventoryService {
-    private final InventoryRepository repository = new InventoryRepository();
+public class InventoryService implements InputPort<Inventory> {
+    private final OutputPort<Inventory> repository;
+
+    public InventoryService() {
+        this(new InventoryRepository());
+    }
+
+    public InventoryService(OutputPort<Inventory> repository) {
+        this.repository = Objects.requireNonNull(repository, "El OutputPort no puede ser nulo.");
+    }
 
     public void create(Inventory inventory) {
         if (inventory == null) throw new IllegalArgumentException("El inventario no puede ser nulo.");

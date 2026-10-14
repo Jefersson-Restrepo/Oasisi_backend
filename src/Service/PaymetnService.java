@@ -1,11 +1,22 @@
 package Service;
 
 import Domain.Payment;
+import Port.InputPort;
+import Port.OutputPort;
 import Repository.PaymetnRepository;
 import java.util.List;
+import java.util.Objects;
 
-public class PaymetnService {
-    private final PaymetnRepository repository = new PaymetnRepository();
+public class PaymetnService implements InputPort<Payment> {
+    private final OutputPort<Payment> repository;
+
+    public PaymetnService() {
+        this(new PaymetnRepository());
+    }
+
+    public PaymetnService(OutputPort<Payment> repository) {
+        this.repository = Objects.requireNonNull(repository, "El OutputPort no puede ser nulo.");
+    }
 
     public void create(Payment payment) {
         if (payment == null) throw new IllegalArgumentException("El pago no puede ser nulo.");

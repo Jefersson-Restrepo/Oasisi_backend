@@ -1,11 +1,22 @@
 package Service;
 
 import Domain.Service;
+import Port.InputPort;
+import Port.OutputPort;
 import Repository.ServiceRepository;
 import java.util.List;
+import java.util.Objects;
 
-public class ServiceService {
-    private final ServiceRepository repository = new ServiceRepository();
+public class ServiceService implements InputPort<Service> {
+    private final OutputPort<Service> repository;
+
+    public ServiceService() {
+        this(new ServiceRepository());
+    }
+
+    public ServiceService(OutputPort<Service> repository) {
+        this.repository = Objects.requireNonNull(repository, "El OutputPort no puede ser nulo.");
+    }
 
     public void create(Service service) {
         if (service == null) throw new IllegalArgumentException("El servicio no puede ser nulo.");
