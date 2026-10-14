@@ -10,6 +10,23 @@ public class PaymetnService {
     public void create(Payment payment) {
         if (payment == null) throw new IllegalArgumentException("El pago no puede ser nulo.");
         if (payment.getAmount() <= 0) throw new IllegalArgumentException("El monto debe ser mayor que cero.");
-        if (payment.getPaymentMethod() == null || payment.getPaymentMethod().isBlank()) throw new IllegalArgumentException("El mÃ©todo de pago es obligatorio.");
+        if (payment.getPaymentMethod() == null || payment.getPaymentMethod().isBlank())
+            throw new IllegalArgumentException("El mÃ©todo de pago es obligatorio.");
         repository.create(payment);
     }
+    public Payment selectById(int id) {
+        return repository.selectById(id);
+    }
+
+    public List<Payment> selectAll() {
+        return repository.selectAll();
+    }
+
+    public boolean update(Payment payment) {
+        return payment != null && repository.update(payment);
+    }
+
+    public boolean delete(int id) {
+        return repository.delete(id);
+    }
+}
