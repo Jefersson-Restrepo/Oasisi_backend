@@ -14,3 +14,8 @@ public class ReservationView {
         System.out.println("0. Volver");
     }
 
+    public void showReservations(List<Reservation> reservations) {
+        if (reservations.isEmpty()) { System.out.println("No hay reservas registradas."); return; }
+        for (Reservation reservation : reservations) System.out.println(reservation);
+    }
+}

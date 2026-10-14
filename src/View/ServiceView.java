@@ -1,4 +1,3 @@
-package View;
 
 import Domain.Service;
 import java.util.List;
@@ -14,3 +13,8 @@ public class ServiceView {
         System.out.println("0. Volver");
     }
 
+    public void showServices(List<Service> services) {
+        if (services.isEmpty()) { System.out.println("No hay servicios registrados."); return; }
+        for (Service serviceItem : services) System.out.println(serviceItem);
+    }
+}

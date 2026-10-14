@@ -14,5 +14,8 @@ public class ProductsView {
         System.out.println("0. Volver");
     }
 
-
+    public void showProducts(List<Products> products) {
+        if (products.isEmpty()) { System.out.println("No hay productos registrados."); return; }
+        for (Products product : products) System.out.println(product);
+    }
 }
