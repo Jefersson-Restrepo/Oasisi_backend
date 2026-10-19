@@ -3,7 +3,7 @@ package View;
 import Domain.Payment;
 import java.util.List;
 
-public class PaymetnView {
+public class PaymentView {
     public void showMenu() {
         System.out.println("\n--- Pagos ---");
         System.out.println("1. Registrar pago");

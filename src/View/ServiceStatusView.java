@@ -6,6 +6,5 @@ public class ServiceStatusView {
         System.out.println("1. Disponible");
         System.out.println("2. Ocupado");
         System.out.println("3. Mantenimiento");
-        System.out.println("0. Cancelar");
     }
 }

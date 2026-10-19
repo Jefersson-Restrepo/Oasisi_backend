@@ -6,11 +6,12 @@ import Domain.Person;
 import Domain.Products;
 import Domain.Reservation;
 import Domain.Service;
+import Domain.ServiceStatus;
 import Port.InputPort;
 import Service.CustomersService;
 import Service.EmployeesService;
 import Service.InventoryService;
-import Service.PaymetnService;
+import Service.PaymentService;
 import Service.PersonService;
 import Service.ProductsService;
 import Service.ReservationService;
@@ -18,11 +19,12 @@ import Service.ServiceService;
 import View.CustomersView;
 import View.EmployeesView;
 import View.InventoryView;
-import View.PaymetnView;
+import View.PaymentView;
 import View.PersonView;
 import View.ProductsView;
 import View.ReservationView;
 import View.ServiceView;
+import View.ServiceStatusView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,7 +42,7 @@ public class Main {
         InputPort<Employees> employeesService = new EmployeesService();
         InputPort<Products> productsService = new ProductsService();
         InputPort<Inventory> inventoryService = new InventoryService();
-        InputPort<Payment> paymetnService = new PaymetnService();
+        InputPort<Payment> paymentService = new PaymentService();
         InputPort<Reservation> reservationService = new ReservationService();
         InputPort<Service> serviceService = new ServiceService();
 
@@ -49,7 +51,7 @@ public class Main {
         EmployeesView employeesView = new EmployeesView();
         ProductsView productsView = new ProductsView();
         InventoryView inventoryView = new InventoryView();
-        PaymetnView paymetnView = new PaymetnView();
+        PaymentView paymentView = new PaymentView();
         ReservationView reservationView = new ReservationView();
         ServiceView serviceView = new ServiceView();
 
@@ -63,7 +65,7 @@ public class Main {
                 case 3 -> manageEmployees(employeesService, employeesView);
                 case 4 -> manageProducts(productsService, productsView);
                 case 5 -> manageInventory(inventoryService, inventoryView);
-                case 6 -> managePayments(paymetnService, paymetnView);
+                case 6 -> managePayments(paymentService, paymentView);
                 case 7 -> manageReservations(reservationService, reservationView);
                 case 8 -> manageServices(serviceService, serviceView);
                 case 0 -> { System.out.println("Gracias por usar Oasis Spa."); exit = true; }
@@ -275,7 +277,7 @@ public class Main {
         }
     }
 
-    private static void managePayments(InputPort<Payment> service, PaymetnView view) {
+    private static void managePayments(InputPort<Payment> service, PaymentView view) {
         boolean back = false;
         while (!back) {
             view.showMenu();
@@ -370,7 +372,7 @@ public class Main {
                     serviceItem.setBenefit(readString("Beneficio: "));
                     serviceItem.setPhoto(readString("Foto: "));
                     serviceItem.setDuration(readInt("DuraciÃ³n (min): "));
-                    serviceItem.setStatus(readString("Estado: "));
+                    serviceItem.setStatus(readServiceStatus());
                     try { service.create(serviceItem); System.out.println("Servicio registrado."); } catch (IllegalArgumentException e) { System.out.println("Error: " + e.getMessage()); }
                 }
                 case 2 -> view.showServices(service.selectAll());
@@ -384,7 +386,7 @@ public class Main {
                     serviceItem.setDescription(readString("Nueva descripciÃ³n: "));
                     serviceItem.setBenefit(readString("Nuevo beneficio: "));
                     serviceItem.setDuration(readInt("Nueva duraciÃ³n: "));
-                    serviceItem.setStatus(readString("Nuevo estado: "));
+                    serviceItem.setStatus(readServiceStatus());
                     System.out.println(service.update(serviceItem) ? "Servicio actualizado." : "No se pudo actualizar.");
                 }
                 case 5 -> {
@@ -422,6 +424,26 @@ public class Main {
     private static String readString(String prompt) {
         System.out.print(prompt);
         return scanner.nextLine().trim();
+    }
+
+    private static ServiceStatus readServiceStatus() {
+        ServiceStatusView view = new ServiceStatusView();
+
+        while (true) {
+            view.showStatusMenu();
+            int option = readInt("Selecciona un estado: ");
+
+            switch (option) {
+                case 1:
+                    return ServiceStatus.DISPONIBLE;
+                case 2:
+                    return ServiceStatus.OCUPADO;
+                case 3:
+                    return ServiceStatus.MANTENIMIENTO;
+                default:
+                    System.out.println("Opcion invalida. Selecciona 1, 2 o 3.");
+            }
+        }
     }
 
     private static Date parseDate(String dateText) throws ParseException {

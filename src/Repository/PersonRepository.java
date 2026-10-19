@@ -8,7 +8,12 @@ import java.util.List;
 public class PersonRepository implements OutputPort<Person> {
     private final List<Person> data = new ArrayList<>();
     public void create(Person person) { if (person != null) data.add(person); }
-    public Person selectById(int id) { return data.stream().filter(person -> person.getId() == id).findFirst().orElse(null); }
+    public Person selectById(int id) {
+        for (Person person : data) {
+            if (person.getId() == id) return person;
+        }
+        return null;
+    }
     public List<Person> selectAll() { return new ArrayList<>(data); }
     public boolean update(Person person) {
         for (int i = 0; i < data.size(); i++) {
@@ -16,5 +21,13 @@ public class PersonRepository implements OutputPort<Person> {
         }
         return false;
     }
-    public boolean delete(int id) { return data.removeIf(person -> person.getId() == id); }
+    public boolean delete(int id) {
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).getId() == id) {
+                data.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
 }

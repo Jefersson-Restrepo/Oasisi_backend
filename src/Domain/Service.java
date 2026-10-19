@@ -6,11 +6,11 @@ public class Service {
     private String benefit;
     private String photo;
     private int duration;
-    private String status;
+    private ServiceStatus status = ServiceStatus.DISPONIBLE;
 
     public Service() { }
 
-    public Service(int id, String description, String benefit, String photo, int duration, String status) {
+    public Service(int id, String description, String benefit, String photo, int duration, ServiceStatus status) {
         this.id = id;
         this.description = description;
         this.benefit = benefit;
@@ -29,8 +29,8 @@ public class Service {
     public void setPhoto(String photo) { this.photo = photo; }
     public int getDuration() { return duration; }
     public void setDuration(int duration) { this.duration = duration; }
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public ServiceStatus getStatus() { return status; }
+    public void setStatus(ServiceStatus status) { this.status = status; }
 
     @Override
     public String toString() {

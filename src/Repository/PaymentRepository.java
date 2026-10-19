@@ -5,10 +5,15 @@ import Port.OutputPort;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaymetnRepository implements OutputPort<Payment> {
+public class PaymentRepository implements OutputPort<Payment> {
     private final List<Payment> data = new ArrayList<>();
     public void create(Payment payment) { if (payment != null) data.add(payment); }
-    public Payment selectById(int id) { return data.stream().filter(payment -> payment.getId() == id).findFirst().orElse(null); }
+    public Payment selectById(int id) {
+        for (Payment payment : data) {
+            if (payment.getId() == id) return payment;
+        }
+        return null;
+    }
     public List<Payment> selectAll() { return new ArrayList<>(data); }
     public boolean update(Payment payment) {
         for (int i = 0; i < data.size(); i++) {
@@ -16,5 +21,13 @@ public class PaymetnRepository implements OutputPort<Payment> {
         }
         return false;
     }
-    public boolean delete(int id) { return data.removeIf(payment -> payment.getId() == id); }
+    public boolean delete(int id) {
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).getId() == id) {
+                data.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
 }
