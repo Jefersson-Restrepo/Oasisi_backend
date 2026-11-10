@@ -8,19 +8,20 @@
 src/
 |-- Domain/       Clases que representan cosas del negocio
 |-- Port/         Operaciones que usan los servicios y repositorios
-|-- Repository/   Guarda y busca los datos en listas
+|-- Repository/   Guarda y busca los datos
 |-- Service/      Revisa los datos antes de guardarlos
 |-- View/         Muestra los menus de la consola
+|-- Config/       Configuracion de la base de datos SQLite
 `-- Main.java     Inicia el programa y conecta las clases
 ```
 
-El recorrido sencillo de un registro es:
+Los clientes se guardan en SQLite mediante este recorrido:
 
 ```text
-Main -> Service -> Repository -> lista de datos
+Main -> Service -> Repository -> SQLite (data/oasis-spa.db)
 ```
 
-Por ejemplo, `Main` pide los datos de un servicio, `ServiceService` comprueba que sean correctos y `ServiceRepository` los guarda.
+El resto de las entidades todavia se guarda en listas mientras el programa esta abierto.
 
 ## Paso a paso: crear una clase del dominio
 
@@ -90,11 +91,11 @@ La clase `Service` guarda el estado como `ServiceStatus`, y `Main` convierte la 
 
 ## Como ejecutar
 
-Se requiere Java 17 o posterior. Desde la carpeta principal del proyecto, compila y ejecuta:
+Se requiere Java 17 o posterior y Maven. Desde la carpeta principal del proyecto, compila y ejecuta:
 
 ```powershell
-javac -encoding UTF-8 -d out -sourcepath src src\Main.java
-java -cp out Main
+mvn clean compile
+mvn exec:java
 ```
 
-Los datos se guardan en listas mientras el programa esta abierto; se pierden al cerrarlo.
+Maven descarga el controlador JDBC de SQLite. En IntelliJ, abre o recarga el proyecto como proyecto Maven y ejecuta `Main`; el controlador debe estar en el classpath. La base se crea automaticamente en `data/oasis-spa.db` y los clientes permanecen guardados al cerrar el programa. Para cambiar la ubicacion, define la propiedad Java `-Doasis.db.path=ruta/a/archivo.db`.
